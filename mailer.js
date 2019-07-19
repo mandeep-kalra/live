@@ -10,7 +10,7 @@ var smtpTransport = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: "info@idiscover.me",
-		pass: "idiscover123"
+		pass: "MandeepR123"
 	}
 });
 
