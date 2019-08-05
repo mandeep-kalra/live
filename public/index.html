@@ -11,7 +11,9 @@
 	<title>iDiscover.me</title>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="styles/main-972b92257d.css"/>
+	<!-- build:css styles/main.css -->
+	<link href="./styles/bootstrap.min.css" rel="stylesheet">
+	<!-- endbuild -->
 
 	<style>
 		/* Loading Spinner */
@@ -1144,7 +1146,60 @@
 	<div ui-view="left_panel"></div>
 	<div ui-view="content"></div>
 
-	<script src="scripts/main-5f07005407.js"></script>
+	<!-- build:js scripts/main.js -->
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="../bower_components/angular-ui-router/release/stateEvents.min.js"></script>
+	<script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+
+	<script src="./scripts/Chart.js" type="text/javascript"></script>
+	<script src="./scripts/angular-chart.js" type="text/javascript"></script>
+	<script src="./scripts/Chart.PieceLabel.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/crypto-js.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/angular-fullscreen.js" type="text/javascript"></script>
+
+	<script src="./scripts/angular-tooltips.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/angular-auto-grow-input.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/angular-sanitize.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/re-tree.js" type="text/javascript"></script>
+	<script src="./scripts/ng-device-detector.js" type="text/javascript"></script>
+
+	<script src="./scripts/jspdf.min.js" type="text/javascript"></script>
+
+	<script src="./scripts/angular-drag-and-drop-lists.js"></script>
+
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers.js"></script>
+	<script src="scripts/services.js"></script>
+
+	<script src="./scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-core.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-ui-core.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-ui-widget.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-ui-mouse.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-ui-position.js"></script>
+
+	<script type="text/javascript" src="./assets/js-core/modernizr.js"></script>
+	<script type="text/javascript" src="./assets/js-core/jquery-cookie.js"></script>
+
+	<script src="../bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+	<script src="../bower_components/blueimp-file-upload/js/jquery.iframe-transport.js" type="text/javascript"></script>
+	<script src="../bower_components/blueimp-file-upload/js/jquery.fileupload.js" type="text/javascript"></script>
+
+	<script src="../bower_components/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js" type="text/javascript"></script>
+
+	<script src="../bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
+	<script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> -->
+
+	<script type="text/javascript" src="assets/bootstrap/js/bootstrap.js"></script>
+	<!-- endbuild -->
 
 
 

@@ -116,7 +116,6 @@
 </span>
 
 <div id="sb-site" ng-show="!loading">
-
 	<div id="page-wrapper">
 
 		<div id="page-content-wrapper">
@@ -270,10 +269,13 @@
 								<b>Core Beliefs</b>
 							</h2>
 						</div>
+						{{work_details.work_details.department}}
+						{{work_details.work_details.current_company}}
+
 						<div class="col-md-6" ng-repeat="stat in profile_content.profile.beliefs"
-							style="padding: 5px 0;">
-							<i class="material-icons" style="font-size: 11px;">fiber_manual_record</i>
-							{{stat.statement}}
+							style="padding: 5px 0;"  ng-if = "stat.how_much >= 8">
+								<i class="material-icons" style="font-size: 11px;">fiber_manual_record</i>
+								{{stat.statement}}
 						</div>
 					</div>
 				</div>

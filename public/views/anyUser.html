@@ -175,6 +175,9 @@
 	.mini_color_donotrelate {
 		color: rgb(66, 133, 244);
 	}
+	.mini_color_partiallyrelate {
+		color: rgb(143, 139, 137);
+	}
 
 	.mini_color_donotexhibitanymore {
 		color: rgb(0, 200, 81);
@@ -196,6 +199,29 @@
 	.active {
 		background: #f8bbd0;
 		border-color: #e7aabf;
+	}
+	.table tr {
+		align: left;
+		font-weight: bold;
+		border-color: #9ccc65;
+	}
+	.table tr td textarea{
+		max-width:300px;
+	}
+	.colmHighlight{
+		background: #90caf9;
+		border-color: #42a5f5;
+		color: #3e4855;
+	}
+	.highlightRedText{
+		font-weight: bold;
+		color: #e50404;
+		align: center;
+	}
+	.highlightGreenText{
+		font-weight: bold;
+		color: #058c02;
+		align: center;
 	}
 </style>
 
@@ -1164,7 +1190,10 @@
 							ng-show="menu == 2 && (user.profile.profile_number == 0 || wantNewProfile)">
 							<script>
 								$(document).ready(function () {
-
+									alert("fgddfgdfgdf")
+									$(".contenteditable").on("click,"function(){
+										alert("hello");
+									});
 									$("#submit").click(function () {
 
 										$("#myModal").modal('hide');
@@ -1542,17 +1571,22 @@
 										</div>
 										<div class="panel panel-body col-md-12"
 											style="text-align: center; padding-bottom: 30px;">
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
-												Relate Strongly/Partially
+												Relate Strongly
 											</div>
-											<div class="col-md-4 mini_color_donotexhibitanymore">
+											<div class="col-md-3 mini_color_partiallyrelate">
+												<i class="material-icons"
+													style="font-size: 11px;">fiber_manual_record</i>
+												Relate Partially
+											</div>
+											<div class="col-md-3 mini_color_donotexhibitanymore">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
 												Improved Over Time
 											</div>
-											<div class="col-md-4 mini_color_donotrelate">
+											<div class="col-md-3 mini_color_donotrelate">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
 												Never Exhibited
@@ -1565,7 +1599,7 @@
 											</div>
 											<div class="col-md-9">
 												<span ng-repeat="mini in keys.mini_descriptions"
-													ng-class="mini.relate=='donotexhibitanymore' ? 'mini_color_donotexhibitanymore':(mini.relate=='donotrelate'?'mini_color_donotrelate':'')">
+													ng-class="mini.relate=='donotexhibitanymore' ? 'mini_color_donotexhibitanymore':(mini.relate=='donotrelate'?'mini_color_donotrelate': (mini.relate=='relatepartially'?'mini_color_partiallyrelate':''))">
 													<i class="material-icons"
 														style="font-size: 11px;">fiber_manual_record</i>
 													{{mini.mini_description}}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1582,10 +1616,24 @@
 												<b>Core Beliefs</b>
 											</h2>
 										</div>
+										<div class="panel panel-body col-md-12"
+											style="text-align: center; padding-bottom: 30px;">
+											<div class="col-md-4 mini_color_donotexhibitanymore">
+												<i class="material-icons"
+													style="font-size: 11px;">fiber_manual_record</i>
+												Belief equal to 8 or more then
+											</div>
+											<div class="col-md-4 highlightRedText" style="font-weight: normal">
+												<i class="material-icons"
+													style="font-size: 11px;">fiber_manual_record</i>
+												Belief below 8
+											</div>
+										</div>
 										<div class="col-md-6" ng-repeat="stat in user.profile.beliefs"
 											style="padding: 5px 0;">
 											<i class="material-icons" style="font-size: 11px;">fiber_manual_record</i>
-											{{stat.statement}}
+											{{stat.statement}}  <span ng-if="stat.how_much >= 8" class="mini_color_donotexhibitanymore">( {{stat.how_much}} )</span>
+											<span ng-if="stat.how_much < 8" class="highlightRedText" style="font-weight: normal">( {{stat.how_much}} )</span>
 										</div>
 									</div>
 								</div>
@@ -1599,17 +1647,22 @@
 										</div>
 										<div class="panel panel-body col-md-12"
 											style="text-align: center; padding-bottom: 30px;">
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
-												Relate Strongly/Partially
+												Relate Strongly
 											</div>
-											<div class="col-md-4 mini_color_donotexhibitanymore">
+											<div class="col-md-3 mini_color_partiallyrelate">
+												<i class="material-icons"
+													style="font-size: 11px;">fiber_manual_record</i>
+												Relate Partially
+											</div>
+											<div class="col-md-3 mini_color_donotexhibitanymore">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
 												Improved Over Time
 											</div>
-											<div class="col-md-4 mini_color_donotrelate">
+											<div class="col-md-3 mini_color_donotrelate">
 												<i class="material-icons"
 													style="font-size: 11px;">fiber_manual_record</i>
 												Never Exhibited
@@ -1622,7 +1675,7 @@
 											</div>
 											<div class="col-md-9">
 												<span ng-repeat="mini in keys.mini_descriptions"
-													ng-class="mini.relate=='donotexhibitanymore' ? 'mini_color_donotexhibitanymore':(mini.relate=='donotrelate'?'mini_color_donotrelate':'')">
+													ng-class="mini.relate=='donotexhibitanymore' ? 'mini_color_donotexhibitanymore':(mini.relate=='donotrelate'?'mini_color_donotrelate':(mini.relate=='relatepartially'?'mini_color_partiallyrelate':''))">
 													<i class="material-icons"
 														style="font-size: 11px;">fiber_manual_record</i>
 													{{mini.mini_description}}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -2755,7 +2808,7 @@
 									<!--<div class="panel-heading col-sm-12">
 											<h2 class="panel-title" style="text-align:center; font-size:1.8em; padding: 10px 0; background: #efefef;">
 												<a data-toggle="collapse" data-parent="#accordion5">
-													<b>Recommendations for Manager</b>
+													<b>Recommendations for Reporting Manager</b>
 												</a>
 											</h2>
 										</div>
@@ -3892,7 +3945,7 @@
 									<div class="col-xs-12" style="margin: 20px auto;">
 										<hr>
 									</div>
-									<!--<div class="row">
+									<div class="row">
 										<div class="col-md-offset-3 col-md-6"
 											ng-repeat="keys in user.assessor.profile_content | filter: filterSec3()"
 											style="margin: 10px auto;">
@@ -3908,11 +3961,11 @@
 											*Note - BS score is on left & LN score on right with corresponding learning
 											need.
 										</div>
-									</div>-->
+									</div>
 									<div class="row">
-										<!--<div class="col-md-12" style="margin-top: 30px;">
+										<div class="col-md-12" style="margin-top: 30px;">
 											<h4 style="font-weight: bold;">Additional Synthesis</h4>
-										</div>-->
+										</div>
 										<div class="col-md-offset-3 col-md-6"
 											ng-repeat="keys in user.assessor.profile_content | filter: filterSec3()"
 											style="margin: 10px auto;">
@@ -3927,6 +3980,326 @@
 										<div class="col-xs-12" style="color:red; font-size: 12px; margin-top: 20px;">
 											*Note - BS score is on left & LN score on right with corresponding learning
 											need.
+										</div>
+									</div>
+									{{user}}
+									<div class="row" ng-init="personalMasteryOptions=[{text:'No',value:'0.0'}, {text:'Yes',value:'0.5'}]">
+										<div class="col-md-12" style="margin-top: 30px;">
+											<h4 style="font-weight: bold;">Assessment rubric new parameters</h4>
+											<table class="table table-bordered" style="margin-top: 10px;">
+												<thead>
+												  <tr>
+													<th>Code</th>
+													<th>Metric</th>
+													<th>Score</th>
+													<th>Defination</th>
+													<th>Applicable</th>
+													<th>Reason</th>
+												  </tr>
+												</thead>
+												<tbody>
+												  <tr>
+													<td class="colmHighlight">1</td>
+													<td class="colmHighlight">SELF AWARENESS</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												  </tr>
+												  <tr>
+													<td>1.1</td>
+													<td>Articulation and clarity of strengths </td>
+													<td>0.5</td>
+													<td>Candidate is able to articulate impact/ effects of his strengths</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_1">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_1_text"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>1.2</td>
+													<td>Basic knowledge about own learning needs</td>
+													<td>0.5</td>
+													<td>Basic articulation of feedback the candidate receives from others on his learning needs </td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_2">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_2_text"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>1.3</td>
+													<td>Awareness and clarity of learning needs</td>
+													<td>0.5</td>
+													<td>Candidate is able to articulate impact/ effects of his learning needs</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_3">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_3_text"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>1.4</td>
+													<td>No major blindspots found</td>
+													<td>0.5</td>
+													<td>A blindspot is a learning need of a candidate which he is unaware of that is impacting the role or work</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_4">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_4_text"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>1.5</td>
+													<td>If PM>=1.5</td>
+													<td>0.5</td>
+													<td>If PM is more than equal to 1.5, then add 0.5 in Self awareness score; as candidate has worked on many of his challenges</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_5">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_5_text"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>1.6</td>
+													<td>If PM>=2.5</td>
+													<td>0.5</td>
+													<td>If PM is more than equal to 2.5, then add another 0.5 in Self awareness score</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery1_6">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery1_6_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>Total</td>
+													<td>3</td>
+													<td></td>
+													<td ng-init = "{{personalMasteryResult=((personalMastery1_1-0)+(personalMastery1_2-0)+(personalMastery1_3 - 0) + (personalMastery1_4 - 0) + (personalMastery1_5 - 0) + (personalMastery1_6 - 0))}}"></td>
+													<td ng-class="personalMasteryResult > 0 ? 'highlightGreenText' : 'highlightRedText'">{{personalMasteryResult}}</td>
+  												    <td></td>
+												  </tr>
+												  <tr>
+													<td class="colmHighlight">2</td>
+													<td class="colmHighlight">OPENNESS</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												  </tr>
+												  <tr>
+													<td>2.1</td>
+													<td>Not complaining </td>
+													<td>0.5</td>
+													<td>Not blaming others for his own patterns/ challenges/ learning needs.</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_1">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_1_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>2.2</td>
+													<td>Sharing learning needs on probing</td>
+													<td>0.5</td>
+													<td>0.5- if he shares learning needs after probing, </td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_2">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_2_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>2.3</td>
+													<td>Sharing learning needs without probing </td>
+													<td>0.5</td>
+													<td>0.5- if he shares learning needs without the need of being probed</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_3">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_3_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>2.4</td>
+													<td>Sharing impact of his learning need on self, others and own work </td>
+													<td>0.5</td>
+													<td>Open to share how learning needs are impacting him, his work and others</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_4">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_4_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>2.5</td>
+													<td>Willingness to adopt/own new practices to work on his learning needs </td>
+													<td>0.5</td>
+													<td>Showed openness to work on learning need during interaction when given feedback</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_5">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_5_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>2.6</td>
+													<td>Shown tremendous improvement in PM, through previous feedbacks from peers/ family/ manager (PM>=2)</td>
+													<td>0.5</td>
+													<td>Shown tremendous improvement in Personal mastery; this 0.5 score will only be given if the candidate's PM score is more than equal to 2</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery2_6">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery2_6_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>Total</td>
+													<td>3</td>
+													<td></td>
+													<td ng-init = "{{personalMastery_2_Result=((personalMastery2_1-0)+(personalMastery2_2-0)+(personalMastery2_3 - 0) + (personalMastery2_4 - 0) + (personalMastery2_5 - 0) + (personalMastery2_6 - 0))}}"></td>
+													<td ng-class="personalMastery_2_Result > 0 ? 'highlightGreenText' : 'highlightRedText'">{{personalMastery_2_Result}}</td>
+													<td></td>
+												  </tr>
+												  <tr>
+													<td class="colmHighlight">3</td>
+													<td class="colmHighlight">PERSONAL MASTERY</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												  </tr>
+												  <tr>
+													<td>3.1</td>
+													<td>Has worked on minor basic challenges</td>
+													<td>0.5</td>
+													<td>For eg communication, confidence (not profile specific)</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_1">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_1_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>3.2</td>
+													<td>Core Enneagram challenges are there but he has identified and started to take concrete action on them</td>
+													<td>0.5</td>
+													<td>Making conscious effort in the moment to do the uncomfortable but the right thing; for eg- a type 9 being assertive when required</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_2">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_2_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>3.3</td>
+													<td>Adopted regular practice to resolve core challenges & shown consistent improvement in last few years</td>
+													<td>0.5</td>
+													<td>Learning needs are visible but he has adppted regular practices such as- meditation, exercise, long term planning, consistent prioritization, etc which he is following on regular basis</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_3">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_3_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>3.4</td>
+													<td>Core patterns have been mostly resolved</td>
+													<td>0.5</td>
+													<td>Core patterns of the candidate have been resolved; has worked on most of the learning needs and have resolved them (visible in rare cases by he knows how to bounse back using the practices) </td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_4">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_4_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>3.5</td>
+													<td>No profile specific pattern is there</td>
+													<td>0.5</td>
+													<td>All patterns have either been improved and are not visible even</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_5">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_5_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>3.6</td>
+													<td>A state of complete consciousness. This level of consciousness has the quality of bliss</td>
+													<td>0.5</td>
+													<td>A higher state where the mind and the senses are completely silent, but consciousness is fully awake</td>
+													<td>
+														<select name="repeatSelect" ng-model="personalMastery3_6">
+      														<option ng-repeat="option in personalMasteryOptions" value="{{option.value}}">{{option.text}}</option>
+														</select>
+													</td>
+													<td>
+														<textarea class="form-control" ng-model="personalMastery3_6_text" style="min-width:100px;"></textarea>
+													</td>
+												  </tr>
+												  <tr>
+													<td>Total</td>
+													<td></td>
+													<td>3</td>
+													<td ng-init = "{{personalMastery_3_Result=((personalMastery3_1-0)+(personalMastery3_2-0)+(personalMastery3_3 - 0) + (personalMastery3_4 - 0) + (personalMastery3_5 - 0) + (personalMastery3_6 - 0))}}"></td>
+													<td ng-class="personalMastery_3_Result > 0 ? 'highlightGreenText' : 'highlightRedText'">{{personalMastery_3_Result}}</td>
+													<td></td>
+												  </tr>
+												</tbody>
+											  </table>
 										</div>
 									</div>
 								</div>
@@ -4353,7 +4726,7 @@
 																<li class="mrg10B" ng-click="section_num = 6">
 																	<a class="list-group-item" href=""
 																		ng-class="section_num == 6 ? 'back_active_panel' : 'bg_white'">
-																		Recommendations for Manager
+																		Recommendations for Reporting Manager
 																		<i
 																			class="glyph-icon icon-angle-right mrg0A"></i>
 																	</a>
@@ -4443,13 +4816,14 @@
 																			<span>&#xE612;</span>
 																		</label>
 																	</div>
-																	<div class="col-xs-4">{{(dividedObj['s'+section_num]['donotrelate']/(dividedObj['s'+section_num]['donotexhibitanymore']
+																	<div class="col-xs-4" ng-init="{{neverExhibited=(dividedObj['s'+section_num]['donotrelate']/(dividedObj['s'+section_num]['donotexhibitanymore']
 																		+ dividedObj['s'+section_num]['donotrelate']
 																		+ dividedObj['s'+section_num]['relatepartially'] + dividedObj['s'+section_num]['relatestrongly']) *
 																		100
-																		| number:2) || 0}} %</div>
+																		| number:2) || 0}}">{{neverExhibitedCount(neverExhibited)}} %</div>
 																	<div class="col-xs-4">
 																		{{dividedObj['s'+section_num]['donotrelate']}}
+																		{{updatePercentOWithMinValue(neverExhibited)}}
 																	</div>
 																</div>
 																<div class="row">
@@ -4585,7 +4959,7 @@
 														<b ng-show="section_num == 2">Professional Strengths</b>
 														<b ng-show="section_num == 3">Learning Needs</b>
 														<b ng-show="section_num == 5">Growth Recommendations</b>
-														<b ng-show="section_num == 6">Recommendations for Manager</b>
+														<b ng-show="section_num == 6">Recommendations for Reporting Manager</b>
 													</a>
 													<span style="float:right; font-size: 15px;" ng-show="section_num != 5 && section_num != 6">Page {{section_num+1}}/6</span>
 													<span style="float:right; font-size: 15px;" ng-show="section_num == 5 || section_num == 6">Page {{section_num}}/6</span>
@@ -6707,7 +7081,6 @@
 																	ng-click="keys.assessor_checkbox = false;">
 																	<i class="material-icons">clear</i>
 																</span>
-
 																<textarea style="padding: 5px; margin-bottom: 5px;"
 																	ng-model="keys.report_keyword" placeholder="Keyword"
 																	rows="1" cols="80"></textarea>
@@ -6753,6 +7126,7 @@
 														</div>
 													</div>
 												</div>
+												<!--
 												<div class="col-md-12" ng-show="switchView == 2">
 													<div class="row"
 														ng-repeat="keys in user.assessor.profile_content | filter: filterSec2() | filter: {assessor_checkbox: true}"
@@ -6766,6 +7140,7 @@
 														</div>
 													</div>
 												</div>
+												-->
 											</div>
 
 											<div class="row"
@@ -7588,17 +7963,67 @@
 												<br>
 											</div> -->
 											<button class="btn btn-info" ng-click="add_to_recommend()"
-												ng-show="switchView == 1">+ Add Section</button>
+												ng-show="switchView == 1">+ Add Sectionssss</button>
 											<hr>
 											<!--	section Recommendations		-->
 											<div class="row" style="padding: 20px;">
 												<div class="col-md-12"
 													style="background: #eee; text-align: center; padding: 15px 0 0 0; margin-bottom: 15px;">
 													<h4>
-														<b>Recommendations for Manager</b>
+														<b>Recommendations for Reporting Manager</b>
 													</h4>
 													<br>
 												</div>
+
+												<div class="col-md-12" ng-show="switchView == 1">
+													<div class="col-md-12">
+														<ul>
+															<li
+																ng-repeat="keys in user.assessor.recommendations_for_manager | filter: {recommendation_by_assessor: true}">
+																<span class="btn" style="color: red;"
+																	ng-click="keys.recommendation_by_assessor = false;">
+																	<i class="material-icons">clear</i>
+																</span>
+																<textarea style="padding: 5px; margin-bottom: 5px;"
+																	ng-model="keys.linked_keywords[0].mini_id" placeholder="Keyword"
+																	rows="1" cols="80"></textarea>
+																<span style="float: right;">
+																</span>
+																<ul>
+																	<li style="margin-left: 50px;"
+																		ng-repeat="statement in keys.linked_keywords[0].statements">
+																		<span class="btn" style="color: red;"
+																			ng-click="removeRM_Statement(statement,$index+1)">
+																			<i class="material-icons">clear</i>
+																		</span>
+																		<textarea type="text"
+																			style="padding: 5px; margin-bottom: 5px;"
+																			ng-model="statement.statement"
+																			placeholder="Mini-description" rows="1"
+																			cols="80"></textarea>
+																	</li>
+																	<!--
+																	<li style="margin: 10px auto;">
+																		<button class="btn btn-warning"
+																			ng-click="pushNewReportMini(keys)">+
+																			Add</button>
+																	</li>
+																	-->
+																</ul>
+															</li>
+														</ul>
+													</div>
+
+													<div class="col-md-12" style="text-align: center;">
+														<button class="btn btn-info" ng-click="pushNewKey(3, true);">
+															<span>+ Add more Learning Needs</span>
+														</button>
+													</div>
+												</div>
+
+
+
+												<!--
 												<ul>
 													<li ng-repeat="mr in user.assessor.recommendations_for_manager"
 														ng-if="mr.selected">
@@ -7622,7 +8047,7 @@
 														</span>
 
 													</li>
-												</ul>
+												</ul> -->
 											</div>
 											<hr>
 											<!--	role fitment		-->
