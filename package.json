@@ -29,7 +29,7 @@
     "mongo-sanitize": "^1.0.0",
     "mongodb": "^3.1.13",
     "mongodb-promise": "0.0.4",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.7.5",
     "morgan": "^1.8.2",
     "mpromise": "^0.5.5",
     "node": "^8.12.0",
